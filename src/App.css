@@ -1,0 +1,11 @@
+/* Central layout wrapper — shifts all app screens right of the sidebar on tablet+ */
+.app-content {
+  width: 100%;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .app-content {
+    padding-left: var(--sidebar-width);
+  }
+}
