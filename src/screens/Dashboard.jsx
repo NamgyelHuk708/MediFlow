@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import { useApp } from '../context/AppContext';
+import { useNotification } from '../context/NotificationContext';
 import './Dashboard.css';
 
 function getGreeting() {
@@ -14,7 +16,18 @@ function getGreeting() {
 export default function Dashboard() {
   const navigate = useNavigate();
   const { userName } = useApp();
+  const { notify } = useNotification();
   const firstName = userName ? userName.split(' ')[0] : 'there';
+
+  useEffect(() => {
+    const greeting = getGreeting();
+    const name = firstName !== 'there' ? firstName : 'there';
+    notify({
+      message: `${greeting}, ${name}! You have 2 medicine reminders due today.`,
+      type: 'info',
+      duration: 6000,
+    });
+  }, []);
 
   return (
     <div className="dashboard-container">

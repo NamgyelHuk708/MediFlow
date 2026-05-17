@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Popup from '../components/Popup';
 import { useApp } from '../context/AppContext';
+import { useNotification } from '../context/NotificationContext';
 import './QueueStatus.css';
 
 export default function QueueStatus() {
@@ -17,9 +18,18 @@ export default function QueueStatus() {
 
   const displayName = userName || 'Karma Wangdi';
 
+  const { notify } = useNotification();
   const [appNotification, setAppNotification] = useState(true);
   const [smsNotification, setSmsNotification] = useState(true);
   const [showQRPopup, setShowQRPopup] = useState(false);
+
+  useEffect(() => {
+    notify({
+      message: `Token A045 — you are 5th in queue at ${hospital}. Estimated wait: 20 minutes.`,
+      type: 'info',
+      duration: 7000,
+    });
+  }, []);
 
   return (
     <div className="queue-status-container">

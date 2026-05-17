@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
+import { NotificationProvider } from './context/NotificationContext';
+import NotificationContainer from './components/NotificationContainer';
 import './App.css';
 
 import Welcome from './screens/Welcome';
@@ -26,6 +28,7 @@ function AppShell() {
 
   return (
     <>
+      <NotificationContainer />
       {/* Sidebar — only on tablet+ for non-welcome, non-admin routes */}
       {showShell && <SideNav />}
 
@@ -52,9 +55,11 @@ function AppShell() {
 function App() {
   return (
     <AppProvider>
-      <Router>
-        <AppShell />
-      </Router>
+      <NotificationProvider>
+        <Router>
+          <AppShell />
+        </Router>
+      </NotificationProvider>
     </AppProvider>
   );
 }

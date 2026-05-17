@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import PriorityBanner from '../components/PriorityBanner';
+import { useNotification } from '../context/NotificationContext';
 import './BookAppointment.css';
 
 const hospitals = [
@@ -37,6 +38,7 @@ const timeSlots = [
 export default function BookAppointment() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { notify } = useNotification();
   const [selectedHospital, setSelectedHospital] = useState(hospitals[0]);
   const [selectedDepartment, setSelectedDepartment] = useState('General');
   const [selectedDate, setSelectedDate] = useState(25);
@@ -153,14 +155,21 @@ export default function BookAppointment() {
           {/* Confirm Button */}
           <button
             className="confirm-button"
-            onClick={() => navigate('/queue-status', {
-              state: {
-                hospital: selectedHospital,
-                department: selectedDepartment,
-                date: selectedDate,
-                time: selectedTime,
-              }
-            })}
+            onClick={() => {
+              notify({
+                message: `Appointment confirmed at ${selectedHospital}, ${selectedDepartment} department, at ${selectedTime}. Your token is A045.`,
+                type: 'success',
+                duration: 6000,
+              });
+              navigate('/queue-status', {
+                state: {
+                  hospital: selectedHospital,
+                  department: selectedDepartment,
+                  date: selectedDate,
+                  time: selectedTime,
+                }
+              });
+            }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12"/>
