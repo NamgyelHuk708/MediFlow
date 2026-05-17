@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import QRCode from 'react-qr-code';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Popup from '../components/Popup';
@@ -20,7 +19,6 @@ export default function QueueStatus() {
   const displayName = userName || 'Karma Wangdi';
 
   const { notify } = useNotification();
-  const qrValue = 'MEDIFLOW-TOKEN-A045-JDWNRH-2024';
   const [appNotification, setAppNotification] = useState(true);
   const [smsNotification, setSmsNotification] = useState(true);
   const [showQRPopup, setShowQRPopup] = useState(false);
@@ -155,17 +153,11 @@ export default function QueueStatus() {
         <div className="qr-popup">
           <h3>Hospital Check-in</h3>
           <p>Scan this QR code at the hospital reception desk</p>
-          <div className="qr-code-wrapper">
-            <QRCode
-              value={qrValue}
-              size={200}
-              bgColor="#ffffff"
-              fgColor="#001e40"
-              level="M"
-            />
+          <div className="qr-placeholder">
+            <div className="qr-box">█████████████████</div>
           </div>
           <p className="qr-instruction">
-            Token <strong>A045</strong> · JDWNRH
+            Your token <strong>A045</strong> will be registered
           </p>
         </div>
       </Popup>
