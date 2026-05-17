@@ -20,12 +20,11 @@ export default function Dashboard() {
   const firstName = userName ? userName.split(' ')[0] : 'there';
 
   useEffect(() => {
-    const greeting = getGreeting();
-    const name = firstName !== 'there' ? firstName : 'there';
+    const name = firstName !== 'there' ? firstName : '';
     notify({
-      message: `${greeting}, ${name}. 2 medicines due today.`,
-      type: 'info',
-      duration: 5000,
+      message: name ? `Welcome, ${name}!` : 'Welcome to MediFlow!',
+      type: 'success',
+      duration: 4000,
     });
   }, []);
 

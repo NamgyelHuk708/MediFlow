@@ -1,10 +1,21 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import { useNotification } from '../context/NotificationContext';
 import './Placeholder.css';
 
 export default function MedicineReminder() {
   const navigate = useNavigate();
+  const { notify } = useNotification();
+
+  useEffect(() => {
+    notify({
+      message: 'Reminder! 2 medicines due today. Please take them on time.',
+      type: 'warning',
+      duration: 6000,
+    });
+  }, []);
 
   return (
     <div className="placeholder-container">
