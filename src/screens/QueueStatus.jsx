@@ -25,7 +25,7 @@ export default function QueueStatus() {
 
   useEffect(() => {
     notify({
-      message: 'Alert! Your turn is coming up. 20 minutes to go.',
+      message: `Alert! Your appointment is at ${time}. Your turn is coming up — 20 minutes to go.`,
       type: 'warning',
       duration: 6000,
     });
