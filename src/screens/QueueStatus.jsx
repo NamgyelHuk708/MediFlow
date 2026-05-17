@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import QRCode from 'react-qr-code';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Popup from '../components/Popup';
@@ -19,6 +20,7 @@ export default function QueueStatus() {
   const displayName = userName || 'Karma Wangdi';
 
   const { notify } = useNotification();
+  const qrValue = useRef(`MEDIFLOW-A045-${Math.random().toString(36).slice(2, 10).toUpperCase()}`);
   const [appNotification, setAppNotification] = useState(true);
   const [smsNotification, setSmsNotification] = useState(true);
   const [showQRPopup, setShowQRPopup] = useState(false);
@@ -153,11 +155,17 @@ export default function QueueStatus() {
         <div className="qr-popup">
           <h3>Hospital Check-in</h3>
           <p>Scan this QR code at the hospital reception desk</p>
-          <div className="qr-placeholder">
-            <div className="qr-box">█████████████████</div>
+          <div className="qr-code-wrapper">
+            <QRCode
+              value={qrValue.current}
+              size={200}
+              bgColor="#ffffff"
+              fgColor="#001e40"
+              level="M"
+            />
           </div>
           <p className="qr-instruction">
-            Your token <strong>A045</strong> will be registered
+            Token <strong>A045</strong> · {qrValue.current.split('-').slice(-1)[0]}
           </p>
         </div>
       </Popup>
