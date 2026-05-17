@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Popup from '../components/Popup';
+import StaticQR from '../components/StaticQR';
 import { useApp } from '../context/AppContext';
 import { useNotification } from '../context/NotificationContext';
 import './QueueStatus.css';
@@ -153,8 +154,8 @@ export default function QueueStatus() {
         <div className="qr-popup">
           <h3>Hospital Check-in</h3>
           <p>Scan this QR code at the hospital reception desk</p>
-          <div className="qr-placeholder">
-            <div className="qr-box">█████████████████</div>
+          <div className="qr-code-box">
+            <StaticQR />
           </div>
           <p className="qr-instruction">
             Your token <strong>A045</strong> will be registered

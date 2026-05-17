@@ -2,36 +2,36 @@
   min-height: 100vh;
   background-color: var(--background);
   padding-top: var(--header-height);
-  padding-bottom: calc(var(--bottom-nav-height) + 68px); /* +chat bar */
+  padding-bottom: calc(var(--bottom-nav-height) + 72px);
   display: flex;
   flex-direction: column;
 }
 
 @media (min-width: 768px) {
-  .symptom-checker-container {
-    padding-bottom: 88px;
-  }
+  .symptom-checker-container { padding-bottom: 88px; }
 }
 
+/* ── Main content area ── */
 .symptom-main {
   flex: 1;
   padding: var(--spacing-lg) var(--container-margin-mobile);
   max-width: 540px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
   overflow-y: auto;
 }
 
 @media (min-width: 768px) {
   .symptom-main {
-    max-width: 720px;
+    max-width: 680px;
     padding: var(--spacing-lg) var(--container-margin-desktop);
   }
 }
 
 @media (min-width: 1024px) {
   .symptom-main {
-    max-width: 860px;
+    max-width: 760px;
     padding: var(--spacing-xl) var(--spacing-2xl);
   }
 }
@@ -42,7 +42,7 @@
   gap: var(--spacing-lg);
 }
 
-/* Symptom Chips */
+/* ── Symptom Chips ── */
 .chips-section {
   display: flex;
   flex-wrap: wrap;
@@ -67,10 +67,7 @@
 }
 
 @media (min-width: 768px) {
-  .chip {
-    flex: 0 1 auto;
-    min-width: 100px;
-  }
+  .chip { flex: 0 1 auto; min-width: 110px; }
 }
 
 .chip:hover {
@@ -80,16 +77,10 @@
 }
 
 .chip:active { transform: scale(0.95); }
+.chip-emoji  { font-size: 24px; line-height: 1; }
+.chip-text   { text-align: center; font-weight: 600; color: var(--primary); }
 
-.chip-emoji { font-size: 24px; line-height: 1; }
-
-.chip-text {
-  text-align: center;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-/* Action Buttons */
+/* ── Action Buttons ── */
 .actions-section {
   display: flex;
   flex-direction: column;
@@ -115,20 +106,18 @@
   transition: all 0.2s ease;
 }
 
-.action-button:hover    { background-color: var(--primary-container); }
-.action-button:active   { transform: scale(0.98); }
+.action-button:hover  { background-color: var(--primary-container); }
+.action-button:active { transform: scale(0.98); }
 
-/* Chat Input Bar */
+/* ── Chat Input Bar ── */
+/* The bar itself spans the full width (sidebar → right edge) */
 .chat-input-bar {
   position: fixed;
   bottom: var(--bottom-nav-height);
   left: 0;
   right: 0;
-  padding: var(--spacing-md) var(--container-margin-mobile);
   background: var(--background);
   border-top: 1px solid var(--outline-variant);
-  display: flex;
-  gap: var(--spacing-sm);
   z-index: 90;
 }
 
@@ -139,11 +128,27 @@
   }
 }
 
+/* Inner wrapper centres the input to match .symptom-main above */
+.chat-input-inner {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--container-margin-mobile);
+  max-width: 540px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 @media (min-width: 768px) {
-  .chat-input-bar {
-    bottom: 0;
+  .chat-input-inner {
+    max-width: 680px;
     padding: var(--spacing-md) var(--container-margin-desktop);
-    max-width: calc(720px + var(--sidebar-width));
+  }
+}
+
+@media (min-width: 1024px) {
+  .chat-input-inner {
+    max-width: 760px;
+    padding: var(--spacing-md) var(--spacing-2xl);
   }
 }
 
@@ -177,7 +182,7 @@
 .mic-btn { background-color: var(--secondary); color: var(--on-secondary); border-radius: var(--radius-full); }
 .mic-btn:hover { opacity: 0.9; }
 
-/* Emergency popup */
+/* ── Emergency Popup ── */
 .emergency-popup {
   text-align: center; padding: var(--spacing-2xl) var(--spacing-lg);
   display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg);

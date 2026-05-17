@@ -106,13 +106,15 @@ export default function SymptomChecker() {
 
       {/* Chat Input */}
       <div className="chat-input-bar">
-        <input 
-          type="text" 
-          placeholder="Type symptoms or record audio..."
-          className="chat-input"
-        />
-        <button className="send-btn">📤</button>
-        <button className="mic-btn">🎤</button>
+        <div className="chat-input-inner">
+          <input
+            type="text"
+            placeholder="Type symptoms or record audio..."
+            className="chat-input"
+          />
+          <button className="send-btn">📤</button>
+          <button className="mic-btn">🎤</button>
+        </div>
       </div>
 
       {/* Emergency Popup */}
