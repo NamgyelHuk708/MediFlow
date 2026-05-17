@@ -23,9 +23,9 @@ export default function Dashboard() {
     const greeting = getGreeting();
     const name = firstName !== 'there' ? firstName : 'there';
     notify({
-      message: `${greeting}, ${name}! You have 2 medicine reminders due today.`,
+      message: `${greeting}, ${name}. 2 medicines due today.`,
       type: 'info',
-      duration: 6000,
+      duration: 5000,
     });
   }, []);
 

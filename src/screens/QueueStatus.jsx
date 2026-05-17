@@ -25,9 +25,9 @@ export default function QueueStatus() {
 
   useEffect(() => {
     notify({
-      message: `Token A045 — you are 5th in queue at ${hospital}. Estimated wait: 20 minutes.`,
-      type: 'info',
-      duration: 7000,
+      message: 'Alert! Your turn is coming up. 20 minutes to go.',
+      type: 'warning',
+      duration: 6000,
     });
   }, []);
 

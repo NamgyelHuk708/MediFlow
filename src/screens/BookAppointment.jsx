@@ -157,9 +157,9 @@ export default function BookAppointment() {
             className="confirm-button"
             onClick={() => {
               notify({
-                message: `Appointment confirmed at ${selectedHospital}, ${selectedDepartment} department, at ${selectedTime}. Your token is A045.`,
+                message: 'Appointment booked successfully!',
                 type: 'success',
-                duration: 6000,
+                duration: 4000,
               });
               navigate('/queue-status', {
                 state: {
